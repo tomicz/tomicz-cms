@@ -95,21 +95,30 @@ async function getAvailablePages() {
 
 // Initialize templates directory
 async function initializeTemplates() {
-  const templatesDir = 'templates';
-  const pagesTemplatesDir = 'templates/pages';
-  
+  const templatesDir = "templates";
+  const pagesTemplatesDir = "templates/pages";
+
   try {
     // Create templates directory if it doesn't exist
     await fs.ensureDir(templatesDir);
     await fs.ensureDir(pagesTemplatesDir);
-    
+
     // Check if template files exist, if not copy them
     const templateFiles = [
-      { src: 'tomicz-cms/templates/pages/page.html', dest: 'templates/pages/page.html' },
-      { src: 'tomicz-cms/templates/pages/page.css', dest: 'templates/pages/page.css' },
-      { src: 'tomicz-cms/templates/pages/page.js', dest: 'templates/pages/page.js' }
+      {
+        src: "tomicz-cms/templates/pages/page.html",
+        dest: "templates/pages/page.html",
+      },
+      {
+        src: "tomicz-cms/templates/pages/page.css",
+        dest: "templates/pages/page.css",
+      },
+      {
+        src: "tomicz-cms/templates/pages/page.js",
+        dest: "templates/pages/page.js",
+      },
     ];
-    
+
     for (const file of templateFiles) {
       if (!(await fileExists(file.dest))) {
         await fs.copy(file.src, file.dest);
@@ -117,55 +126,70 @@ async function initializeTemplates() {
       }
     }
   } catch (error) {
-    console.log(chalk.yellow(`⚠️  Warning: Could not initialize templates: ${error.message}`));
+    console.log(
+      chalk.yellow(
+        `⚠️  Warning: Could not initialize templates: ${error.message}`
+      )
+    );
   }
 }
 
 // Read and process template
 async function readTemplate(templatePath, pageName, pageNameCapitalized) {
   try {
-    let content = await fs.readFile(templatePath, 'utf8');
-    
+    let content = await fs.readFile(templatePath, "utf8");
+
     // Replace placeholders
     content = content.replace(/\{\{PAGE_NAME\}\}/g, pageName);
-    content = content.replace(/\{\{PAGE_NAME_CAPITALIZED\}\}/g, pageNameCapitalized);
-    
+    content = content.replace(
+      /\{\{PAGE_NAME_CAPITALIZED\}\}/g,
+      pageNameCapitalized
+    );
+
     return content;
   } catch (error) {
-    throw new Error(`Failed to read template ${templatePath}: ${error.message}`);
+    throw new Error(
+      `Failed to read template ${templatePath}: ${error.message}`
+    );
   }
 }
 
 // Generate HTML template
 async function generateHtmlTemplate(pageName, pageNameCapitalized) {
-  const templatePath = 'templates/pages/page.html';
-  
+  const templatePath = "templates/pages/page.html";
+
   if (!(await fileExists(templatePath))) {
-    throw new Error('HTML template not found. Please run "tomicz init" to initialize templates.');
+    throw new Error(
+      'HTML template not found. Please run "tomicz init" to initialize templates.'
+    );
   }
-  
+
   return await readTemplate(templatePath, pageName, pageNameCapitalized);
 }
 
 // Generate CSS template
 async function generateCssTemplate(pageName, pageNameCapitalized) {
-  const templatePath = 'templates/pages/page.css';
-  
+  const templatePath = "templates/pages/page.css";
+
   if (!(await fileExists(templatePath))) {
-    throw new Error('CSS template not found. Please run "tomicz init" to initialize templates.');
+    throw new Error(
+      'CSS template not found. Please run "tomicz init" to initialize templates.'
+    );
   }
-  
+
   return await readTemplate(templatePath, pageName, pageNameCapitalized);
 }
 
 // Generate JavaScript template
 async function generateJsTemplate(pageName, pageNameCapitalized) {
-  const templatePath = 'templates/pages/page.js';
-  
+  const templatePath = "templates/pages/page.js";
+
   if (!(await fileExists(templatePath))) {
-    throw new Error('JavaScript template not found. Please run "tomicz init" to initialize templates.');
+    throw new Error(
+      'JavaScript template not found. Please run "tomicz init" to initialize templates.'
+    );
   }
-  
+
   return await readTemplate(templatePath, pageName, pageNameCapitalized);
 }
 

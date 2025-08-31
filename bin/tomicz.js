@@ -73,8 +73,16 @@ program
       console.log(chalk.cyan("\n🚀 Initializing Tomicz CMS templates...\n"));
       await initializeTemplates();
       console.log(chalk.green("\n✅ Templates initialized successfully!"));
-      console.log(chalk.cyan("\n📝 You can now customize the templates in the templates/ directory"));
-      console.log(chalk.cyan("💡 Edit templates/pages/page.html, page.css, and page.js to your liking\n"));
+      console.log(
+        chalk.cyan(
+          "\n📝 You can now customize the templates in the templates/ directory"
+        )
+      );
+      console.log(
+        chalk.cyan(
+          "💡 Edit templates/pages/page.html, page.css, and page.js to your liking\n"
+        )
+      );
     } catch (error) {
       console.error(chalk.red("Error:"), error.message);
       process.exit(1);
