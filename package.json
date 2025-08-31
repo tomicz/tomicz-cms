@@ -1,0 +1,39 @@
+{
+  "name": "tomicz-cms",
+  "version": "1.0.0",
+  "description": "A lightweight console-based CMS for managing web pages and content",
+  "main": "bin/tomicz.js",
+  "bin": {
+    "tomicz": "./bin/tomicz.js"
+  },
+  "scripts": {
+    "start": "node bin/tomicz.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cms",
+    "cli",
+    "content-management",
+    "web-development",
+    "static-site"
+  ],
+  "author": "Darko Tomic",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^11.1.0",
+    "inquirer": "^9.2.12",
+    "chalk": "^4.1.2",
+    "fs-extra": "^11.1.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tomicz/tomicz-cms.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tomicz/tomicz-cms/issues"
+  },
+  "homepage": "https://github.com/tomicz/tomicz-cms#readme"
+}
