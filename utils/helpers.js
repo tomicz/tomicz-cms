@@ -196,6 +196,40 @@ async function initializeTemplates() {
         console.log(chalk.green(`✅ Created CSS: ${file.dest}`));
       }
     }
+
+    // Create index.html page if it doesn't exist in public/
+    const publicIndexPath = "public/index.html";
+    if (!(await fileExists(publicIndexPath))) {
+      try {
+        // Create index page using make-page functionality
+        const pageName = "index";
+        const pageNameCapitalized = capitalizeFirst(pageName);
+        
+        // Generate the page files
+        const htmlContent = await generateHtmlTemplate(pageName, pageNameCapitalized);
+        const cssContent = await generateCssTemplate(pageName, pageNameCapitalized);
+        const jsContent = await generateJsTemplate(pageName, pageNameCapitalized);
+
+        // Create the page files in public/pages/ first
+        await fs.writeFile(`public/pages/${pageName}.html`, htmlContent);
+        await fs.writeFile(`public/css/pages/${pageName}.css`, cssContent);
+        await fs.writeFile(`public/js/pages/${pageName}.js`, jsContent);
+
+        // Move the HTML file to public/index.html
+        await fs.move(`public/pages/${pageName}.html`, publicIndexPath);
+        
+        console.log(chalk.green(`✅ Created homepage: ${publicIndexPath}`));
+        console.log(chalk.blue(`📄 Page files created: public/css/pages/${pageName}.css, public/js/pages/${pageName}.js`));
+      } catch (error) {
+        console.log(
+          chalk.yellow(
+            `⚠️  Warning: Could not create index page: ${error.message}`
+          )
+        );
+      }
+    } else {
+      console.log(chalk.blue(`ℹ️  Homepage already exists: ${publicIndexPath}`));
+    }
   } catch (error) {
     console.log(
       chalk.yellow(
