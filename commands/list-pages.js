@@ -47,9 +47,9 @@ async function listPages(options = {}) {
     let totalFiles = 0;
 
     for (const page of pages) {
-      const htmlFile = `../public/pages/${page}.html`;
-      const cssFile = `../public/css/pages/${page}.css`;
-      const jsFile = `../public/js/pages/${page}.js`;
+      const htmlFile = `public/pages/${page}.html`;
+      const cssFile = `public/css/pages/${page}.css`;
+      const jsFile = `public/js/pages/${page}.js`;
 
       console.log(chalk.cyan(`📄 ${chalk.bold(page)}`));
 

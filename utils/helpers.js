@@ -36,7 +36,7 @@ async function fileExists(filePath) {
 
 // Ensure directories exist
 async function ensureDirectories() {
-  const dirs = ["../public/pages", "../public/css/pages", "../public/js/pages"];
+  const dirs = ["public/pages", "public/css/pages", "public/js/pages"];
 
   for (const dir of dirs) {
     await fs.ensureDir(dir);
@@ -81,7 +81,7 @@ async function confirmAction(message, defaultValue = false) {
 
 // Get available pages
 async function getAvailablePages() {
-  const pagesDir = "../public/pages";
+  const pagesDir = "public/pages";
 
   try {
     const files = await fs.readdir(pagesDir);
