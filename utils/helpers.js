@@ -206,6 +206,11 @@ async function initializeTemplates() {
     const publicIndexPath = "public/index.html";
     if (!(await fileExists(publicIndexPath))) {
       try {
+        // Ensure all necessary directories exist
+        await fs.ensureDir("public/pages");
+        await fs.ensureDir("public/css/pages");
+        await fs.ensureDir("public/js/pages");
+
         // Create index page using make-page functionality
         const pageName = "index";
         const pageNameCapitalized = capitalizeFirst(pageName);

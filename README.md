@@ -72,6 +72,10 @@ Shows detailed help information and examples.
 ### Option 1: Global Installation (Recommended)
 
 ```bash
+# First, install dependencies
+npm install
+
+# Then install globally
 npm install -g .
 ```
 
@@ -93,22 +97,32 @@ npx tomicz-cms make-page about
 1. **Install the CLI:**
 
    ```bash
+   # Install dependencies first
+   npm install
+
+   # Then install globally
    npm install -g .
    ```
 
-2. **Create your first page:**
+2. **Initialize your project:**
+
+   ```bash
+   tomicz init
+   ```
+
+3. **Create your first page:**
 
    ```bash
    tomicz make-page about
    ```
 
-3. **List all pages:**
+4. **List all pages:**
 
    ```bash
    tomicz list-pages
    ```
 
-4. **Delete a page:**
+5. **Delete a page:**
    ```bash
    tomicz delete-page about
    ```
