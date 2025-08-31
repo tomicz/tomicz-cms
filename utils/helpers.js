@@ -97,11 +97,13 @@ async function getAvailablePages() {
 async function initializeTemplates() {
   const templatesDir = "templates";
   const pagesTemplatesDir = "templates/pages";
+  const componentsDir = "public/js/components/page";
 
   try {
     // Create templates directory if it doesn't exist
     await fs.ensureDir(templatesDir);
     await fs.ensureDir(pagesTemplatesDir);
+    await fs.ensureDir(componentsDir);
 
     // Check if template files exist, if not copy them
     const templateFiles = [
@@ -119,10 +121,35 @@ async function initializeTemplates() {
       },
     ];
 
+    // Check if web component files exist, if not copy them
+    const componentFiles = [
+      {
+        src: "tomicz-cms/templates/components/header.js",
+        dest: "public/js/components/page/header.js",
+      },
+      {
+        src: "tomicz-cms/templates/components/links.js",
+        dest: "public/js/components/page/links.js",
+      },
+      {
+        src: "tomicz-cms/templates/components/footer.js",
+        dest: "public/js/components/page/footer.js",
+      },
+    ];
+
+    // Copy page templates
     for (const file of templateFiles) {
       if (!(await fileExists(file.dest))) {
         await fs.copy(file.src, file.dest);
         console.log(chalk.green(`✅ Created template: ${file.dest}`));
+      }
+    }
+
+    // Copy web component files
+    for (const file of componentFiles) {
+      if (!(await fileExists(file.dest))) {
+        await fs.copy(file.src, file.dest);
+        console.log(chalk.green(`✅ Created component: ${file.dest}`));
       }
     }
   } catch (error) {
