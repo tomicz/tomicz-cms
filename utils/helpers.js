@@ -101,6 +101,11 @@ async function initializeTemplates() {
   const imagesDir = "public/images";
   const cssDir = "public/css";
 
+  // Get the path to the installed tomicz-cms package
+  const path = require("path");
+  const packagePath = path.dirname(require.resolve("../package.json"));
+  const templatesPath = path.join(packagePath, "templates");
+
   try {
     // Create directories if they don't exist
     await fs.ensureDir(templatesDir);
@@ -112,15 +117,15 @@ async function initializeTemplates() {
     // Check if template files exist, if not copy them
     const templateFiles = [
       {
-        src: "tomicz-cms/templates/pages/page.html",
+        src: path.join(templatesPath, "pages/page.html"),
         dest: "templates/pages/page.html",
       },
       {
-        src: "tomicz-cms/templates/pages/page.css",
+        src: path.join(templatesPath, "pages/page.css"),
         dest: "templates/pages/page.css",
       },
       {
-        src: "tomicz-cms/templates/pages/page.js",
+        src: path.join(templatesPath, "pages/page.js"),
         dest: "templates/pages/page.js",
       },
     ];
@@ -128,15 +133,15 @@ async function initializeTemplates() {
     // Check if web component files exist, if not copy them
     const componentFiles = [
       {
-        src: "tomicz-cms/templates/components/header.js",
+        src: path.join(templatesPath, "components/header.js"),
         dest: "public/js/components/page/header.js",
       },
       {
-        src: "tomicz-cms/templates/components/links.js",
+        src: path.join(templatesPath, "components/links.js"),
         dest: "public/js/components/page/links.js",
       },
       {
-        src: "tomicz-cms/templates/components/footer.js",
+        src: path.join(templatesPath, "components/footer.js"),
         dest: "public/js/components/page/footer.js",
       },
     ];
@@ -144,11 +149,11 @@ async function initializeTemplates() {
     // Check if essential image files exist, if not copy them
     const imageFiles = [
       {
-        src: "tomicz-cms/templates/images/Logo_Light_Text.svg",
+        src: path.join(templatesPath, "images/Logo_Light_Text.svg"),
         dest: "public/images/Logo_Light_Text.svg",
       },
       {
-        src: "tomicz-cms/templates/images/favicon.ico",
+        src: path.join(templatesPath, "images/favicon.ico"),
         dest: "public/images/favicon.ico",
       },
     ];
@@ -156,11 +161,11 @@ async function initializeTemplates() {
     // Check if essential CSS files exist, if not copy them
     const cssFiles = [
       {
-        src: "tomicz-cms/templates/css/common.css",
+        src: path.join(templatesPath, "css/common.css"),
         dest: "public/css/common.css",
       },
       {
-        src: "tomicz-cms/templates/css/components.css",
+        src: path.join(templatesPath, "css/components.css"),
         dest: "public/css/components.css",
       },
     ];
@@ -204,11 +209,20 @@ async function initializeTemplates() {
         // Create index page using make-page functionality
         const pageName = "index";
         const pageNameCapitalized = capitalizeFirst(pageName);
-        
+
         // Generate the page files
-        const htmlContent = await generateHtmlTemplate(pageName, pageNameCapitalized);
-        const cssContent = await generateCssTemplate(pageName, pageNameCapitalized);
-        const jsContent = await generateJsTemplate(pageName, pageNameCapitalized);
+        const htmlContent = await generateHtmlTemplate(
+          pageName,
+          pageNameCapitalized
+        );
+        const cssContent = await generateCssTemplate(
+          pageName,
+          pageNameCapitalized
+        );
+        const jsContent = await generateJsTemplate(
+          pageName,
+          pageNameCapitalized
+        );
 
         // Create the page files in public/pages/ first
         await fs.writeFile(`public/pages/${pageName}.html`, htmlContent);
@@ -217,9 +231,13 @@ async function initializeTemplates() {
 
         // Move the HTML file to public/index.html
         await fs.move(`public/pages/${pageName}.html`, publicIndexPath);
-        
+
         console.log(chalk.green(`✅ Created homepage: ${publicIndexPath}`));
-        console.log(chalk.blue(`📄 Page files created: public/css/pages/${pageName}.css, public/js/pages/${pageName}.js`));
+        console.log(
+          chalk.blue(
+            `📄 Page files created: public/css/pages/${pageName}.css, public/js/pages/${pageName}.js`
+          )
+        );
       } catch (error) {
         console.log(
           chalk.yellow(
@@ -228,7 +246,9 @@ async function initializeTemplates() {
         );
       }
     } else {
-      console.log(chalk.blue(`ℹ️  Homepage already exists: ${publicIndexPath}`));
+      console.log(
+        chalk.blue(`ℹ️  Homepage already exists: ${publicIndexPath}`)
+      );
     }
   } catch (error) {
     console.log(
