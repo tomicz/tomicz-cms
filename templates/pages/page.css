@@ -1,5 +1,11 @@
 /* {{PAGE_NAME_CAPITALIZED}} Page Styles */
 
+/* Main content area - pushes content below fixed header */
+.page-content {
+    margin-top: 120px; /* Match header height */
+    padding: 2rem 0;
+}
+
 /* Page-specific styles for {{PAGE_NAME}} */
 .{{PAGE_NAME}}-page {
     /* Add your page-specific styles here */
@@ -7,6 +13,11 @@
 
 /* Responsive design */
 @media (max-width: 768px) {
+    .page-content {
+        margin-top: 120px; /* Keep same margin on mobile */
+        padding: 1rem 0;
+    }
+    
     .{{PAGE_NAME}}-page {
         /* Mobile styles */
     }
