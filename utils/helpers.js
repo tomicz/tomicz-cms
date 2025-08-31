@@ -93,130 +93,80 @@ async function getAvailablePages() {
   }
 }
 
-// Generate HTML template
-function generateHtmlTemplate(pageName, pageNameCapitalized) {
-  return `<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-RJW428Z054"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
+// Initialize templates directory
+async function initializeTemplates() {
+  const templatesDir = '../templates';
+  const pagesTemplatesDir = '../templates/pages';
+  
+  try {
+    // Create templates directory if it doesn't exist
+    await fs.ensureDir(templatesDir);
+    await fs.ensureDir(pagesTemplatesDir);
+    
+    // Check if template files exist, if not copy them
+    const templateFiles = [
+      { src: 'templates/pages/page.html', dest: '../templates/pages/page.html' },
+      { src: 'templates/pages/page.css', dest: '../templates/pages/page.css' },
+      { src: 'templates/pages/page.js', dest: '../templates/pages/page.js' }
+    ];
+    
+    for (const file of templateFiles) {
+      if (!(await fileExists(file.dest))) {
+        await fs.copy(file.src, file.dest);
+        console.log(chalk.green(`✅ Created template: ${file.dest}`));
       }
-      gtag("js", new Date());
+    }
+  } catch (error) {
+    console.log(chalk.yellow(`⚠️  Warning: Could not initialize templates: ${error.message}`));
+  }
+}
 
-      gtag("config", "G-RJW428Z054");
-    </script>
+// Read and process template
+async function readTemplate(templatePath, pageName, pageNameCapitalized) {
+  try {
+    let content = await fs.readFile(templatePath, 'utf8');
+    
+    // Replace placeholders
+    content = content.replace(/\{\{PAGE_NAME\}\}/g, pageName);
+    content = content.replace(/\{\{PAGE_NAME_CAPITALIZED\}\}/g, pageNameCapitalized);
+    
+    return content;
+  } catch (error) {
+    throw new Error(`Failed to read template ${templatePath}: ${error.message}`);
+  }
+}
 
-    <!-- Primary Meta Tags -->
-    <meta
-      name="description"
-      content="${pageNameCapitalized} - Unity game development and C# programming with professional developer Darko Tomic."
-    />
-    <meta
-      name="keywords"
-      content="Darko Tomic, Unity tutorials, game development, C# programming, ${pageName}"
-    />
-    <meta name="author" content="Darko Tomic" />
-    <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#4CAF50" />
-
-    <!-- Favicon -->
-    <link rel="icon" href="../images/favicon.ico" type="image/x-icon" />
-
-    <!-- Title -->
-    <title>${pageNameCapitalized} - Darko Tomic</title>
-
-    <!-- Resource Hints -->
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
-      rel="stylesheet"
-      media="print"
-      onload="this.media='all'"
-    />
-
-    <!-- CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-      media="print"
-      onload="this.media='all'"
-    />
-    <link rel="stylesheet" href="../css/common.css" />
-    <link rel="stylesheet" href="../css/components.css" />
-    <link rel="stylesheet" href="../css/pages/${pageName}.css" />
-  </head>
-  <body>
-    <page-header></page-header>
-    <script
-      type="module"
-      src="../js/components/page-components/page-header.js"
-    ></script>
-
-    <!-- ${pageNameCapitalized} content will go here -->
-
-    <page-links></page-links>
-    <script
-      type="module"
-      src="../js/components/page-components/page-links.js"
-    ></script>
-
-    <page-footer></page-footer>
-    <script
-      type="module"
-      src="../js/components/page-components/page-footer.js"
-    ></script>
-
-    <script type="module" src="../js/core/main.js"></script>
-    <script type="module" src="../js/pages/${pageName}.js"></script>
-  </body>
-</html>`;
+// Generate HTML template
+async function generateHtmlTemplate(pageName, pageNameCapitalized) {
+  const templatePath = '../templates/pages/page.html';
+  
+  if (!(await fileExists(templatePath))) {
+    throw new Error('HTML template not found. Please run "tomicz init" to initialize templates.');
+  }
+  
+  return await readTemplate(templatePath, pageName, pageNameCapitalized);
 }
 
 // Generate CSS template
-function generateCssTemplate(pageName, pageNameCapitalized) {
-  return `/* ${pageNameCapitalized} Page Styles */
-
-/* Page-specific styles for ${pageName} */
-.${pageName}-page {
-    /* Add your page-specific styles here */
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .${pageName}-page {
-        /* Mobile styles */
-    }
-}`;
+async function generateCssTemplate(pageName, pageNameCapitalized) {
+  const templatePath = '../templates/pages/page.css';
+  
+  if (!(await fileExists(templatePath))) {
+    throw new Error('CSS template not found. Please run "tomicz init" to initialize templates.');
+  }
+  
+  return await readTemplate(templatePath, pageName, pageNameCapitalized);
 }
 
 // Generate JavaScript template
-function generateJsTemplate(pageName, pageNameCapitalized) {
-  return `// ${pageNameCapitalized} Page JavaScript
-
-// Page-specific functionality for ${pageName}
-document.addEventListener('DOMContentLoaded', function() {
-    // Add your page-specific JavaScript here
-    console.log('${pageNameCapitalized} page loaded');
-});`;
+async function generateJsTemplate(pageName, pageNameCapitalized) {
+  const templatePath = '../templates/pages/page.js';
+  
+  if (!(await fileExists(templatePath))) {
+    throw new Error('JavaScript template not found. Please run "tomicz init" to initialize templates.');
+  }
+  
+  return await readTemplate(templatePath, pageName, pageNameCapitalized);
 }
 
 module.exports = {
@@ -228,6 +178,7 @@ module.exports = {
   formatFileSize,
   confirmAction,
   getAvailablePages,
+  initializeTemplates,
   generateHtmlTemplate,
   generateCssTemplate,
   generateJsTemplate,

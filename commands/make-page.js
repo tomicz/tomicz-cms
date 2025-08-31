@@ -6,6 +6,7 @@ const {
   capitalizeFirst,
   fileExists,
   ensureDirectories,
+  initializeTemplates,
   generateHtmlTemplate,
   generateCssTemplate,
   generateJsTemplate,
@@ -23,6 +24,9 @@ async function makePage(pageName, options = {}) {
 
     // Ensure directories exist
     await ensureDirectories();
+    
+    // Initialize templates if they don't exist
+    await initializeTemplates();
 
     // Define file paths
     const htmlFile = `public/pages/${validatedName}.html`;
@@ -49,9 +53,9 @@ async function makePage(pageName, options = {}) {
     }
 
     // Generate file content
-    const htmlContent = generateHtmlTemplate(validatedName, capitalizedName);
-    const cssContent = generateCssTemplate(validatedName, capitalizedName);
-    const jsContent = generateJsTemplate(validatedName, capitalizedName);
+    const htmlContent = await generateHtmlTemplate(validatedName, capitalizedName);
+    const cssContent = await generateCssTemplate(validatedName, capitalizedName);
+    const jsContent = await generateJsTemplate(validatedName, capitalizedName);
 
     // Write files
     const filesToWrite = [

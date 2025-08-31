@@ -5,6 +5,7 @@ const chalk = require("chalk");
 const makePage = require("../commands/make-page");
 const deletePage = require("../commands/delete-page");
 const listPages = require("../commands/list-pages");
+const { initializeTemplates } = require("../utils/helpers");
 
 const program = new Command();
 
@@ -63,6 +64,23 @@ program
     }
   });
 
+// Init command
+program
+  .command("init")
+  .description("Initialize templates directory with default templates")
+  .action(async () => {
+    try {
+      console.log(chalk.cyan("\n🚀 Initializing Tomicz CMS templates...\n"));
+      await initializeTemplates();
+      console.log(chalk.green("\n✅ Templates initialized successfully!"));
+      console.log(chalk.cyan("\n📝 You can now customize the templates in the templates/ directory"));
+      console.log(chalk.cyan("💡 Edit templates/pages/page.html, page.css, and page.js to your liking\n"));
+    } catch (error) {
+      console.error(chalk.red("Error:"), error.message);
+      process.exit(1);
+    }
+  });
+
 // Help command
 program
   .command("help")
@@ -75,9 +93,11 @@ program
     );
     console.log("  delete-page <name>  Delete a page and all associated files");
     console.log("  list-pages          List all existing pages with details");
+    console.log("  init                Initialize templates directory");
     console.log("  help                Show this help information");
     console.log("  version             Show version information");
     console.log(chalk.yellow("\nExamples:"));
+    console.log("  tomicz init");
     console.log("  tomicz make-page about");
     console.log("  tomicz delete-page about");
     console.log("  tomicz list-pages");

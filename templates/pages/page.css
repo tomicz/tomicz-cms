@@ -1,0 +1,13 @@
+/* {{PAGE_NAME_CAPITALIZED}} Page Styles */
+
+/* Page-specific styles for {{PAGE_NAME}} */
+.{{PAGE_NAME}}-page {
+    /* Add your page-specific styles here */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .{{PAGE_NAME}}-page {
+        /* Mobile styles */
+    }
+}
