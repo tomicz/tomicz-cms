@@ -105,9 +105,9 @@ async function initializeTemplates() {
     
     // Check if template files exist, if not copy them
     const templateFiles = [
-      { src: 'templates/pages/page.html', dest: '../templates/pages/page.html' },
-      { src: 'templates/pages/page.css', dest: '../templates/pages/page.css' },
-      { src: 'templates/pages/page.js', dest: '../templates/pages/page.js' }
+      { src: 'tomicz-cms/templates/pages/page.html', dest: '../templates/pages/page.html' },
+      { src: 'tomicz-cms/templates/pages/page.css', dest: '../templates/pages/page.css' },
+      { src: 'tomicz-cms/templates/pages/page.js', dest: '../templates/pages/page.js' }
     ];
     
     for (const file of templateFiles) {
