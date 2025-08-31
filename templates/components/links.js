@@ -98,83 +98,122 @@ class PageLinks extends HTMLElement {
             rgba(33, 39, 47, 1) 0%,
             rgba(0, 0, 1, 1) 100%
           );
-          margin: 2rem 0;
         }
 
-        @media (max-width: 768px) {
+        .fa-solid{
+            color: var(--primary-color);
+        }
+
+
+
+
+
+        /* MEDIA */
+
+        @media(max-width: 1400px){
             .links-container{
-                flex-direction: column;
-                gap: 2rem;
+                padding: 1rem;
+            }
+        } 
+
+        @media(max-width: 768px){
+            .links-container{
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
             }
         }
+
+        .social-media ul li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem; /* Adjust as needed for perfect spacing */
+            padding: 0.25rem 0;
+        }
+
+        .social-media ul li i {
+            min-width: 1.5em;
+            text-align: center;
+        }
+
+        .contact ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .contact ul .email {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem; /* Adjust for perfect spacing */
+            padding: 0.25rem 0;
+        }
+
+        .contact ul .email i {
+            font-size: 1em; /* Match text size */
+            min-width: 1.5em; /* Consistent icon width */
+            text-align: center;
+            color: var(--primary-color);
+        }
+
     </style>
 
-    <div class="section-seperator"></div>
-
-    <div class="links-container">
-        <div class="section">
-            <h3 class="title">Quick Links</h3>
-            <ul>
-                <li>
-                    <i class="fas fa-home"></i>
-                    <a href="../index.html">Home</a>
-                </li>
-                <li>
-                    <i class="fas fa-blog"></i>
-                    <a href="../pages/blog.html">Blog</a>
-                </li>
-                <li>
-                    <i class="fas fa-user-graduate"></i>
-                    <a href="../pages/mentorship.html">Mentorship</a>
-                </li>
-                <li>
-                    <i class="fas fa-envelope"></i>
-                    <a href="../pages/newsletter.html">Newsletter</a>
-                </li>
-            </ul>
+        <div class="section-seperator" id="tutorials"></div>
+        <div class="links-container">
+            <div class="navigation section">
+                <div class="title"><h3>Navigation</h3></div>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#tutorials">Tutorials</a></li>
+                    <li><a href="#mentorship">Mentorship</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="services section">
+                <div class="title"><h3>Services</h3></div>
+                <ul>
+                    <li><a href="#mentorship">Mentorship</a></li>
+                    <li><a href="../pages/newsletter.html">Newsletter</a></li>
+                </ul>
+            </div>
+            <div class="social-media section">
+                <div class="title"><h3>Social Media</h3></div>
+                <ul>
+                    <li>
+                        <i class="fab fa-youtube"></i>
+                        <a href="https://www.youtube.com/@tomiczdarko">Youtube</a>
+                    </li>
+                    <li>
+                        <i class="fab fa-github"></i>
+                        <a href="https://github.com/tomicz">Github</a>
+                    </li>
+                    <li>
+                        <i class="fab fa-twitter"></i>
+                        <a href="https://x.com/DarkoTo56635877">Twitter</a>
+                    </li>
+                    <li>
+                        <i class="fab fa-linkedin"></i>
+                        <a href="https://www.linkedin.com/in/darko-tomic-9b40b162/">Linkedin</a>
+                    </li>
+                    <li>
+                        <i class="fab fa-discord"></i>
+                        <a href="https://discord.gg/VTFGa5vKCS">Discord</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="contact section">
+                <div class="title"><h3>Contact</h3></div>
+                <ul>
+                    <li class="email">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>contact@darkounity.com</span>
+                    </li>
+                </ul>
+                <news-letter></news-letter>
+            </div>
         </div>
-
-        <div class="section">
-            <h3 class="title">Social Media</h3>
-            <ul>
-                <li>
-                    <i class="fab fa-youtube"></i>
-                    <a href="https://www.youtube.com/@darkotomic" target="_blank">YouTube</a>
-                </li>
-                <li>
-                    <i class="fab fa-twitter"></i>
-                    <a href="https://twitter.com/darkotomic" target="_blank">Twitter</a>
-                </li>
-                <li>
-                    <i class="fab fa-linkedin"></i>
-                    <a href="https://www.linkedin.com/in/darkotomic/" target="_blank">LinkedIn</a>
-                </li>
-                <li>
-                    <i class="fab fa-github"></i>
-                    <a href="https://github.com/darkotomic" target="_blank">GitHub</a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h3 class="title">Contact</h3>
-            <ul>
-                <li>
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:darko@tomiczengineering.com" class="email">darko@tomiczengineering.com</a>
-                </li>
-                <li>
-                    <i class="fas fa-globe"></i>
-                    <a href="https://www.tomiczengineering.com" target="_blank">tomiczengineering.com</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="section-seperator"></div>
-
-    <newsletter-component></newsletter-component>
-    `;
+      `;
 
     this.attachShadow({ mode: "open" }).appendChild(
       template.content.cloneNode(true)
@@ -182,13 +221,69 @@ class PageLinks extends HTMLElement {
   }
 
   registerClickEvents() {
-    // Add any click event handlers here
-    const links = this.shadowRoot.querySelectorAll("a");
+    const navigationLinks = this.shadowRoot.querySelectorAll(
+      ".navigation ul li a"
+    );
 
-    links.forEach((link) => {
+    const servicesLinks = this.shadowRoot.querySelectorAll(".services ul li a");
+
+    navigationLinks.forEach((link) => {
       link.addEventListener("click", (e) => {
-        // Add any link click handling logic here
-        console.log("Link clicked:", link.href);
+        e.preventDefault();
+        const href = link.getAttribute("href");
+
+        // Check if it's an anchor link (starts with #)
+        if (href.startsWith("#")) {
+          const isIndexPage =
+            window.location.pathname.endsWith("index.html") ||
+            window.location.pathname === "/";
+
+          if (isIndexPage) {
+            const section = document.getElementById(href.substring(1));
+            if (section) {
+              const offsetTop = section.offsetTop - 120;
+              window.scrollTo({
+                top: offsetTop,
+                behavior: "smooth",
+              });
+            }
+          } else {
+            window.location.href = "../index.html" + href;
+          }
+        } else {
+          // Handle regular page links
+          window.location.href = href;
+        }
+      });
+    });
+
+    servicesLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const href = link.getAttribute("href");
+
+        // Check if it's an anchor link (starts with #)
+        if (href.startsWith("#")) {
+          const isIndexPage =
+            window.location.pathname.endsWith("index.html") ||
+            window.location.pathname === "/";
+
+          if (isIndexPage) {
+            const section = document.getElementById(href.substring(1));
+            if (section) {
+              const offsetTop = section.offsetTop - 120;
+              window.scrollTo({
+                top: offsetTop,
+                behavior: "smooth",
+              });
+            }
+          } else {
+            window.location.href = "../index.html" + href;
+          }
+        } else {
+          // Handle regular page links
+          window.location.href = href;
+        }
       });
     });
   }
