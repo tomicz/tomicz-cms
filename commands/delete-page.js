@@ -19,16 +19,16 @@ async function deletePage(pageName, options = {}) {
     );
 
     // Define file paths
-    const htmlFile = `public/pages/${validatedName}.html`;
-    const cssFile = `public/css/pages/${validatedName}.css`;
-    const jsFile = `public/js/pages/${validatedName}.js`;
+    const htmlFile = `../public/pages/${validatedName}.html`;
+    const cssFile = `../public/css/pages/${validatedName}.css`;
+    const jsFile = `../public/js/pages/${validatedName}.js`;
 
     // Check if page exists
     if (!(await fileExists(htmlFile))) {
       const availablePages = await getAvailablePages();
 
       if (availablePages.length === 0) {
-        throw new Error("No pages found in public/pages/ directory");
+        throw new Error("No pages found in ../public/pages/ directory");
       }
 
       console.log(chalk.red(`❌ Page "${validatedName}" not found!`));

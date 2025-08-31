@@ -25,9 +25,9 @@ async function makePage(pageName, options = {}) {
     await ensureDirectories();
 
     // Define file paths
-    const htmlFile = `public/pages/${validatedName}.html`;
-    const cssFile = `public/css/pages/${validatedName}.css`;
-    const jsFile = `public/js/pages/${validatedName}.js`;
+    const htmlFile = `../public/pages/${validatedName}.html`;
+    const cssFile = `../public/css/pages/${validatedName}.css`;
+    const jsFile = `../public/js/pages/${validatedName}.js`;
 
     // Check if files already exist
     const filesExist = {
