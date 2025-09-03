@@ -270,10 +270,18 @@ async function initializeTemplates() {
 
         // Create the page files
         await fs.writeFile(imageLibraryPath, imageLibraryTemplates.htmlContent);
-        await fs.writeFile("public/css/pages/image-library.css", imageLibraryTemplates.cssContent);
-        await fs.writeFile("public/js/pages/image-library.js", imageLibraryTemplates.jsContent);
+        await fs.writeFile(
+          "public/css/pages/image-library.css",
+          imageLibraryTemplates.cssContent
+        );
+        await fs.writeFile(
+          "public/js/pages/image-library.js",
+          imageLibraryTemplates.jsContent
+        );
 
-        console.log(chalk.green(`✅ Created image library: ${imageLibraryPath}`));
+        console.log(
+          chalk.green(`✅ Created image library: ${imageLibraryPath}`)
+        );
         console.log(
           chalk.blue(
             `📄 Image library files created: public/css/pages/image-library.css, public/js/pages/image-library.js`
