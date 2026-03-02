@@ -23,6 +23,10 @@ class PageHeader extends HTMLElement {
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
   />
     <style>
+        :host {
+          font-family: "Rubik", sans-serif;
+        }
+
         :root {
           --primary-color: #10ac84;
           --secondary-color: #e8e8e9;
@@ -92,12 +96,12 @@ class PageHeader extends HTMLElement {
             color: var(--primary-color);
        }
 
-       .center-side ul li:nth-child(5){
+       .center-side ul li:nth-child(6){
             border: 2px solid transparent; 
             border-radius: 10px;
        }
 
-       .center-side ul li:nth-child(5):hover{
+       .center-side ul li:nth-child(6):hover{
             color: var(--secondary-color);
             border: 2px solid var(--primary-color); 
             background-color: transparent;
@@ -366,6 +370,7 @@ class PageHeader extends HTMLElement {
                         <li><a href="#tutorials">Tutorials</a></li>
                         <li><a href="#mentorship">Mentorship</a></li>
                         <li><a href="../pages/blog.html">Blog</a></li>
+                        <li><a href="../pages/roadmap-view.html?id=roadmap_fundementals-program-1757152377060" target="_blank" rel="noopener noreferrer">Roadmap</a></li>
                         <li><a href="#about">About</a></li>
                         <li class="contact-btn">
                            <i class="fa-solid fa-arrow-right">
@@ -397,6 +402,7 @@ class PageHeader extends HTMLElement {
             <li><a href="#tutorials">Tutorials</a></li> 
             <li><a href="#mentorship">Mentorship</a></li> 
             <li><a href="../pages/blog.html">Blog</a></li> 
+            <li><a href="../pages/roadmap-view.html?id=roadmap_fundementals-program-1757152377060" target="_blank" rel="noopener noreferrer">Roadmap</a></li> 
             <li><a href="#about">About</a></li> 
         </ul> 
         <div class="mobile-contact-btn"<a href="#">Contact</a></div>
@@ -472,11 +478,18 @@ class PageHeader extends HTMLElement {
 
     mobileButtons.forEach((button) => {
       button.addEventListener("click", (e) => {
-        e.preventDefault();
         const href = button.getAttribute("href");
 
-        // Handle blog link specifically - always go to blog page
-        if (href.includes("blog.html")) {
+        if (button.hasAttribute("target") && button.getAttribute("target") === "_blank") {
+          window.open(href, "_blank", "noopener,noreferrer");
+          e.preventDefault();
+          this.hideMenu();
+          return;
+        }
+
+        e.preventDefault();
+        // Handle blog and roadmap links - always navigate to page
+        if (href.includes("blog.html") || href.includes("roadmap-view")) {
           window.location.href = href;
           this.hideMenu();
           return;
@@ -561,11 +574,17 @@ class PageHeader extends HTMLElement {
 
     desktopMenuLinks.forEach((link) => {
       link.addEventListener("click", (e) => {
-        e.preventDefault();
         const href = link.getAttribute("href");
 
-        // Handle blog link specifically - always go to blog page
-        if (href.includes("blog.html")) {
+        if (link.hasAttribute("target") && link.getAttribute("target") === "_blank") {
+          window.open(href, "_blank", "noopener,noreferrer");
+          e.preventDefault();
+          return;
+        }
+
+        e.preventDefault();
+        // Handle blog and roadmap links - always navigate to page
+        if (href.includes("blog.html") || href.includes("roadmap-view")) {
           window.location.href = href;
           return;
         }
