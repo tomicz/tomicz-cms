@@ -70,19 +70,7 @@ program
   .description("Initialize templates directory with default templates")
   .action(async () => {
     try {
-      console.log(chalk.cyan("\n🚀 Initializing Tomicz CMS templates...\n"));
       await initializeTemplates();
-      console.log(chalk.green("\n✅ Templates initialized successfully!"));
-      console.log(
-        chalk.cyan(
-          "\n📝 You can now customize the templates in the templates/ directory"
-        )
-      );
-      console.log(
-        chalk.cyan(
-          "💡 Edit templates/pages/page.html, page.css, and page.js to your liking\n"
-        )
-      );
     } catch (error) {
       console.error(chalk.red("Error:"), error.message);
       process.exit(1);
@@ -93,30 +81,11 @@ program
 program
   .command("help")
   .description("Show detailed help information")
-  .action(() => {
-    console.log(chalk.cyan("\n📚 Tomicz CMS Help\n"));
-    console.log(chalk.yellow("Commands:"));
-    console.log(
-      "  make-page <name>    Create a new page with all necessary files"
-    );
-    console.log("  delete-page <name>  Delete a page and all associated files");
-    console.log("  list-pages          List all existing pages with details");
-    console.log("  init                Initialize templates directory");
-    console.log("  help                Show this help information");
-    console.log("  version             Show version information");
-    console.log(chalk.yellow("\nExamples:"));
-    console.log("  tomicz init");
-    console.log("  tomicz make-page about");
-    console.log("  tomicz delete-page about");
-    console.log("  tomicz list-pages");
-    console.log(chalk.yellow("\nFor more information:"));
-    console.log("  https://github.com/tomicz/tomicz-cms\n");
-  });
+  .action(() => {});
 
 // Handle unknown commands
 program.on("command:*", () => {
   console.error(chalk.red("Error: Unknown command"), program.args.join(" "));
-  console.log(chalk.yellow("Run tomicz --help for available commands."));
   process.exit(1);
 });
 

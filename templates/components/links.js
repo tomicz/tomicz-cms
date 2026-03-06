@@ -166,6 +166,8 @@ class PageLinks extends HTMLElement {
                     <li><a href="#hero">Home</a></li>
                     <li><a href="#tutorials">Tutorials</a></li>
                     <li><a href="#mentorship">Mentorship</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/roadmap-view?id=roadmap_fundementals-program-1757152377060" target="_blank" rel="noopener noreferrer">Roadmap</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -174,7 +176,7 @@ class PageLinks extends HTMLElement {
                 <div class="title"><h3>Services</h3></div>
                 <ul>
                     <li><a href="#mentorship">Mentorship</a></li>
-                    <li><a href="../pages/newsletter.html">Newsletter</a></li>
+                    <li><a href="/newsletter">Newsletter</a></li>
                 </ul>
             </div>
             <div class="social-media section">
@@ -207,7 +209,7 @@ class PageLinks extends HTMLElement {
                 <ul>
                     <li class="email">
                         <i class="fa-solid fa-envelope"></i>
-                        <span>contact@darkounity.com</span>
+                        <span>tomiczdarko@gmail.com</span>
                     </li>
                 </ul>
                 <news-letter></news-letter>
@@ -231,6 +233,11 @@ class PageLinks extends HTMLElement {
       link.addEventListener("click", (e) => {
         e.preventDefault();
         const href = link.getAttribute("href");
+
+        if (link.hasAttribute("target") && link.getAttribute("target") === "_blank") {
+          window.open(href, "_blank", "noopener,noreferrer");
+          return;
+        }
 
         // Check if it's an anchor link (starts with #)
         if (href.startsWith("#")) {

@@ -365,7 +365,7 @@ class PageHeader extends HTMLElement {
                     <ul>
                         <li><a href="#tutorials">Tutorials</a></li>
                         <li><a href="#mentorship">Mentorship</a></li>
-                        <li><a href="../pages/blog.html">Blog</a></li>
+                        <li><a href="/blog">Blog</a></li>
                         <li><a href="#about">About</a></li>
                         <li class="contact-btn">
                            <i class="fa-solid fa-arrow-right">
@@ -396,7 +396,7 @@ class PageHeader extends HTMLElement {
             <li><a href="#hero">Home</a></li> 
             <li><a href="#tutorials">Tutorials</a></li> 
             <li><a href="#mentorship">Mentorship</a></li> 
-            <li><a href="../pages/blog.html">Blog</a></li> 
+            <li><a href="/blog">Blog</a></li> 
             <li><a href="#about">About</a></li> 
         </ul> 
         <div class="mobile-contact-btn"<a href="#">Contact</a></div>

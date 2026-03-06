@@ -174,7 +174,7 @@ class PageLinks extends HTMLElement {
                 <div class="title"><h3>Services</h3></div>
                 <ul>
                     <li><a href="#mentorship">Mentorship</a></li>
-                    <li><a href="../pages/newsletter.html">Newsletter</a></li>
+                    <li><a href="/newsletter">Newsletter</a></li>
                 </ul>
             </div>
             <div class="social-media section">
@@ -207,7 +207,7 @@ class PageLinks extends HTMLElement {
                 <ul>
                     <li class="email">
                         <i class="fa-solid fa-envelope"></i>
-                        <span>contact@darkounity.com</span>
+                        <span>tomiczdarko@gmail.com</span>
                     </li>
                 </ul>
                 <news-letter></news-letter>

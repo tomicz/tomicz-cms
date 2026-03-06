@@ -174,7 +174,6 @@ async function initializeTemplates() {
     for (const file of templateFiles) {
       if (!(await fileExists(file.dest))) {
         await fs.copy(file.src, file.dest);
-        console.log(chalk.green(`✅ Created template: ${file.dest}`));
       }
     }
 
@@ -182,7 +181,6 @@ async function initializeTemplates() {
     for (const file of componentFiles) {
       if (!(await fileExists(file.dest))) {
         await fs.copy(file.src, file.dest);
-        console.log(chalk.green(`✅ Created component: ${file.dest}`));
       }
     }
 
@@ -190,7 +188,6 @@ async function initializeTemplates() {
     for (const file of imageFiles) {
       if (!(await fileExists(file.dest))) {
         await fs.copy(file.src, file.dest);
-        console.log(chalk.green(`✅ Created image: ${file.dest}`));
       }
     }
 
@@ -198,7 +195,6 @@ async function initializeTemplates() {
     for (const file of cssFiles) {
       if (!(await fileExists(file.dest))) {
         await fs.copy(file.src, file.dest);
-        console.log(chalk.green(`✅ Created CSS: ${file.dest}`));
       }
     }
 
@@ -236,24 +232,8 @@ async function initializeTemplates() {
 
         // Move the HTML file to public/index.html
         await fs.move(`public/pages/${pageName}.html`, publicIndexPath);
-
-        console.log(chalk.green(`✅ Created homepage: ${publicIndexPath}`));
-        console.log(
-          chalk.blue(
-            `📄 Page files created: public/css/pages/${pageName}.css, public/js/pages/${pageName}.js`
-          )
-        );
-      } catch (error) {
-        console.log(
-          chalk.yellow(
-            `⚠️  Warning: Could not create index page: ${error.message}`
-          )
-        );
-      }
+      } catch (error) {}
     } else {
-      console.log(
-        chalk.blue(`ℹ️  Homepage already exists: ${publicIndexPath}`)
-      );
     }
 
     // Create image-library page if it doesn't exist
@@ -278,34 +258,10 @@ async function initializeTemplates() {
           "public/js/pages/image-library.js",
           imageLibraryTemplates.jsContent
         );
-
-        console.log(
-          chalk.green(`✅ Created image library: ${imageLibraryPath}`)
-        );
-        console.log(
-          chalk.blue(
-            `📄 Image library files created: public/css/pages/image-library.css, public/js/pages/image-library.js`
-          )
-        );
-      } catch (error) {
-        console.log(
-          chalk.yellow(
-            `⚠️  Warning: Could not create image library page: ${error.message}`
-          )
-        );
-      }
+      } catch (error) {}
     } else {
-      console.log(
-        chalk.blue(`ℹ️  Image library already exists: ${imageLibraryPath}`)
-      );
     }
-  } catch (error) {
-    console.log(
-      chalk.yellow(
-        `⚠️  Warning: Could not initialize templates: ${error.message}`
-      )
-    );
-  }
+  } catch (error) {}
 }
 
 // Read and process template
