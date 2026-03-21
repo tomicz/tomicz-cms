@@ -366,17 +366,19 @@ class PageHeader extends HTMLElement {
             </div>
             <div class="center-side">
                 <div class="menu-buttons">
+                    <nav aria-label="Primary navigation">
                     <ul>
                         <li><a href="#tutorials">Tutorials</a></li>
                         <li><a href="#mentorship">Mentorship</a></li>
                         <li><a href="/blog">Blog</a></li>
-                        <li><a href="/roadmap-view?id=roadmap_fundementals-program-1757152377060" target="_blank" rel="noopener noreferrer">Roadmap</a></li>
+                        <li><a href="/pages/roadmap-view?id=roadmap_fundementals-program-1757152377060" target="_blank" rel="noopener noreferrer">Roadmap</a></li>
                         <li><a href="#about">About</a></li>
                         <li class="contact-btn">
                            <i class="fa-solid fa-arrow-right">
                         </i>
-                        <div class="btn-text">Contact</div> 
+                        <div class="btn-text">Contact</div>
                     </ul>
+                    </nav>
                 </div>
             </div>
             <div class="right-side">
@@ -397,15 +399,17 @@ class PageHeader extends HTMLElement {
         </div>
     </div>
     <div class="mobile-menu">
+        <nav aria-label="Mobile navigation">
         <ul class="mobile-buttons">
             <li><a href="#hero">Home</a></li> 
             <li><a href="#tutorials">Tutorials</a></li> 
             <li><a href="#mentorship">Mentorship</a></li> 
             <li><a href="/blog">Blog</a></li> 
-            <li><a href="/roadmap-view?id=roadmap_fundementals-program-1757152377060" target="_blank" rel="noopener noreferrer">Roadmap</a></li> 
+            <li><a href="/pages/roadmap-view?id=roadmap_fundementals-program-1757152377060" target="_blank" rel="noopener noreferrer">Roadmap</a></li> 
             <li><a href="#about">About</a></li> 
-        </ul> 
-        <div class="mobile-contact-btn"<a href="#">Contact</a></div>
+        </ul>
+        </nav>
+        <div class="mobile-contact-btn"><a href="#">Contact</a></div>
         <ul class="social-buttons">
             <li><a href="https://www.youtube.com/@tomiczdarko"><i class="fab fa-youtube fa-2x"></i></a></li> 
             <li><a href="https://github.com/tomicz"><i class="fab fa-github fa-2x"></i></a></li> 
