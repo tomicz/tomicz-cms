@@ -369,7 +369,7 @@ class PageHeader extends HTMLElement {
                     <nav aria-label="Primary navigation">
                     <ul>
                         <li><a href="#tutorials">Tutorials</a></li>
-                        <li><a href="#mentorship">Mentorship</a></li>
+                        <li><a href="#tutoring">Tutoring</a></li>
                         <li><a href="/blog">Blog</a></li>
                         <li><a href="/pages/roadmap-view?id=roadmap_fundementals-program-1757152377060" target="_blank" rel="noopener noreferrer">Roadmap</a></li>
                         <li><a href="#about">About</a></li>
@@ -403,7 +403,7 @@ class PageHeader extends HTMLElement {
         <ul class="mobile-buttons">
             <li><a href="#hero">Home</a></li> 
             <li><a href="#tutorials">Tutorials</a></li> 
-            <li><a href="#mentorship">Mentorship</a></li> 
+            <li><a href="#tutoring">Tutoring</a></li> 
             <li><a href="/blog">Blog</a></li> 
             <li><a href="/pages/roadmap-view?id=roadmap_fundementals-program-1757152377060" target="_blank" rel="noopener noreferrer">Roadmap</a></li> 
             <li><a href="#about">About</a></li> 

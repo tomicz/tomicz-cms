@@ -165,7 +165,7 @@ class PageLinks extends HTMLElement {
                 <ul>
                     <li><a href="#hero">Home</a></li>
                     <li><a href="#tutorials">Tutorials</a></li>
-                    <li><a href="#mentorship">Mentorship</a></li>
+                    <li><a href="#tutoring">Tutoring</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -173,7 +173,7 @@ class PageLinks extends HTMLElement {
             <div class="services section">
                 <div class="title"><h3>Services</h3></div>
                 <ul>
-                    <li><a href="#mentorship">Mentorship</a></li>
+                    <li><a href="#tutoring">Tutoring</a></li>
                     <li><a href="/newsletter">Newsletter</a></li>
                 </ul>
             </div>

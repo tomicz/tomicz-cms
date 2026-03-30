@@ -165,7 +165,7 @@ class PageLinks extends HTMLElement {
                 <ul>
                     <li><a href="#hero">Home</a></li>
                     <li><a href="#tutorials">Tutorials</a></li>
-                    <li><a href="#mentorship">Mentorship</a></li>
+                    <li><a href="#tutoring">Tutoring</a></li>
                     <li><a href="/blog">Blog</a></li>
                     <li><a href="/pages/roadmap-view?id=roadmap_fundementals-program-1757152377060" target="_blank" rel="noopener noreferrer">Roadmap</a></li>
                     <li><a href="#about">About</a></li>
@@ -175,7 +175,7 @@ class PageLinks extends HTMLElement {
             <nav class="services section" aria-label="Services">
                 <div class="title"><h3>Services</h3></div>
                 <ul>
-                    <li><a href="#mentorship">Mentorship</a></li>
+                    <li><a href="#tutoring">Tutoring</a></li>
                     <li><a href="/newsletter">Newsletter</a></li>
                 </ul>
             </nav>
